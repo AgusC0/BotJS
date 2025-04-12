@@ -7,7 +7,7 @@ module.exports = {
 
   async execute(interaction) {
     const clientId = '1336881786785107978'; 
-    const redirectUri = encodeURIComponent('https://tudominio.com/callback'); // tu back-end
+    const redirectUri = encodeURIComponent('https://botjs-production-be49.up.railway.app/callback');
     const scopes = 'identify connections';
 
     const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${encodeURIComponent(scopes)}`;

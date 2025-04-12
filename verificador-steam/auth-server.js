@@ -44,7 +44,6 @@ app.get('/callback', async (req, res) => {
     const guild = await bot.guilds.fetch(process.env.GUILD_ID);
     const member = await guild.members.fetch(user.id);
 
-    // Usando las ID de los roles directamente
     const rolVerificado = guild.roles.cache.get(process.env.ROL_VERIFICADO_ID);
     const rolFarmeito = guild.roles.cache.get(process.env.ROL_FARMEITO_ID);
     const rolNoVerificado = guild.roles.cache.get(process.env.ROL_NO_VERIFICADO_ID);
@@ -60,8 +59,8 @@ app.get('/callback', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 1275; 
 
 app.listen(PORT, () => {
-  console.log(`🌐 Servidor OAuth2 activo en http://localhost:${PORT}`);
+  console.log(`🌐 Servidor OAuth2 activo en https://botjs-production-be49.up.railway.app`);
 });
