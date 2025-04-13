@@ -39,7 +39,17 @@ app.get('/callback', async (req, res) => {
     });
 
     const steamConn = connRes.data.find(c => c.type === 'steam');
-    if (!steamConn) return res.send('❌ No se encontró una cuenta de Steam conectada.');
+    if (!steamConn) return res.send(`
+      ⚠️ Hubo un error durante la verificación.\n
+      
+      👀 Asegurate de tener vinculada tu cuenta de Steam a tu perfil de Discord:\n
+      
+      1️⃣ Abrí **Discord** y andá a **Configuración de Usuario**.\n
+      2️⃣ En **Conexiones**, vinculá tu cuenta de **Steam**.\n
+      3️⃣ Intentá el proceso nuevamente una vez que esté vinculada.\n
+      
+      Si el error persiste, contactá a un miembro del staff para ayuda adicional.\n
+      `);
 
     const guild = await bot.guilds.fetch(process.env.GUILD_ID);
     const member = await guild.members.fetch(user.id);
@@ -52,15 +62,25 @@ app.get('/callback', async (req, res) => {
     if (rolFarmeito) await member.roles.add(rolFarmeito);
     if (rolNoVerificado) await member.roles.remove(rolNoVerificado);
 
-    res.send(`✅ Verificado correctamente como **${user.username}** con Steam: **${steamConn.name}**`);
+    res.send(`
+      ✅ ¡Verificación Exitosa! ✅\n
+      Has sido verificado como **${user.username}** con Steam: **${steamConn.name}**.\n
+      🧑‍🌾 Se te asignará el rol **VERIFICADO ✅** automáticamente.\n
+      🎉 ¡Ya puedes disfrutar de todos los canales exclusivos y funciones del servidor!\n
+      🙌 Si tenés algún problema o preguntas, no dudes en contactarnos.\n
+      `);
+      
   } catch (err) {
     console.error(err.response?.data || err.message);
-    res.status(500).send('⚠️ Error en el proceso de verificación.');
+    res.status(500).send(`
+      ⚠️ Error en el proceso de verificación.\n
+      Si el error persiste, contactá a un miembro del staff para ayuda adicional.`);
+      
   }
 });
 
 const PORT = process.env.PORT || 1275; 
 
 app.listen(PORT, () => {
-  console.log(`🌐 Servidor OAuth2 activo en https://botjs-production-be49.up.railway.app`);
+  console.log(`🌐 Servidor OAuth2 activo en https://backendbot-production.up.railway.app/`);
 });
