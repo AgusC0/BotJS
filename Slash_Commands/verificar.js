@@ -8,7 +8,7 @@ module.exports = {
   globalCooldown: 30,  
   async execute(interaction) {
     const clientId = '1336881786785107978';
-    const redirectUri = encodeURIComponent('https://backendbot-production.up.railway.app/callback');
+    const redirectUri = encodeURIComponent('https://farmxpbot.com/callback');
     const scopes = 'identify connections';
 
     const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${encodeURIComponent(scopes)}`;
